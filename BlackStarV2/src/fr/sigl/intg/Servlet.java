@@ -18,6 +18,7 @@ import javax.servlet.http.Part;
 import fr.sigl.intg.controller.LoginController;
 import fr.sigl.intg.controller.TagController;
 import fr.sigl.intg.controller.UserController;
+import fr.sigl.intg.model.Tag;
 import fr.sigl.intg.model.Userlogin;
 
 @MultipartConfig
@@ -95,7 +96,10 @@ public class Servlet extends HttpServlet {
 				response.sendRedirect("/BlackStarV2/tags");
 				break;
 			case "/BlackStarV2/edit":
-				//TODO
+				int tagId = Integer.parseInt(request.getParameter("tagId"));
+				Tag tag = tagController.getTag(tagId);
+				request.setAttribute("tag", tag);
+				request.getRequestDispatcher("/editTag_BLACKSTAR.jsp").forward(request,response);
 				break;
 			case "/BlackStarV2/gestion":
 				request.getRequestDispatcher("/user_administration_BLACKSTAR.jsp").forward(request, response);
@@ -108,8 +112,8 @@ public class Servlet extends HttpServlet {
 				request.getRequestDispatcher("/user_administration_BLACKSTAR.jsp").forward(request, response);
 				break;
 			case "display_img":
-				String tagId = request.getParameter("selectedTagId");
-				byte[] content = tagController.getImageBytes(Integer.parseInt(tagId));
+				String selectedTagId = request.getParameter("selectedTagId");
+				byte[] content = tagController.getImageBytes(Integer.parseInt(selectedTagId));
 				response.setContentType("image/png");
                 response.setContentLength(content.length);
                 response.getOutputStream().write(content);

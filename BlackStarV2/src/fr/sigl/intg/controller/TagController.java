@@ -191,7 +191,12 @@ public class TagController {
 			image = (Image) tag.getImages().toArray()[0];
 		
 		return image.getImgBytes();
+	}
 		
+	public Tag getTag(int tagId) {
+		
+		TagDAO tagDAO = new TagDAO();
+		return tagDAO.findById(tagId);
 	}
 
 	/*public List<String[]> findAllTags(Connection db) {
