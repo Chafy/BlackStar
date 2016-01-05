@@ -15,6 +15,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+import java.util.Date;
+
+import com.itextpdf.text.Chapter;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.PdfWriter;
+
 import fr.sigl.intg.controller.LoginController;
 import fr.sigl.intg.controller.TagController;
 import fr.sigl.intg.controller.UserController;
@@ -137,6 +150,22 @@ public class Servlet extends HttpServlet {
 				response.setContentType("image/png");
                 response.setContentLength(content.length);
                 response.getOutputStream().write(content);
+				break;
+			case "/BlackStarV2/report":
+				int tagToSeeId = Integer.parseInt(request.getParameter("tagId"));
+				Tag tagToSee = tagController.getTag(tagToSeeId);
+
+				Document document = new Document();
+			    try{
+			        response.setContentType("application/pdf");
+			        PdfWriter.getInstance(document, response.getOutputStream());
+			        document.open();
+			        document.add(new Paragraph("Dossier : " + tagToSee.getTagName(), FontFactory.getFont(FontFactory.HELVETICA, 16, Font.BOLD)));
+			        document.add(new Paragraph(tagToSee.getReport()));
+			    }catch(Exception e){
+			    	e.printStackTrace();
+			    }
+			    document.close();
 				break;
 			default:
 				break;

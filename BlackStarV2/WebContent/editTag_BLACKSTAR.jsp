@@ -1,20 +1,30 @@
 <%@include file="includes/header.jsp"%>
 
 <center>
-	<form action="save_modifications" method="post" enctype="multipart/form-data">
 		<input type="hidden" id="isOwner" value="${isOwner}" /> <input
 			type="hidden" id="isAdmin" value="${isAdmin}" />
-			<input
-			type="hidden" name="tagId" id="tagId" value="${tag.tagId}" />
 
-		<table>
-			<tr>
-				<td><center
-						style="font-size: 16px; margin: 20px 10px 60px 10px">
-						<b>${tag.tagName}</b>
-					</center></td>
-			</tr>
-		</table>
+	<table>
+		<tr>
+		<td>                                                                                        </td>
+			<td><center style="font-size: 16px; margin: 20px 10px 60px 10px">
+					<b>${tag.tagName}</b>
+				</center></td>
+		</tr>
+	</table>
+	<form action="report" method="get">
+		<input type="hidden" name="tagId" id="tagId" value="${tag.tagId}" />
+	<table>
+		<tr>
+			<td><button style="margin: 30px" type="submit"
+						id="submitButton">Générer le rapport judiciaire</button></td>
+		</tr>
+	</table>
+	</form>
+	<form action="save_modifications" method="post"
+		enctype="multipart/form-data">
+		<input type="hidden" name="tagId" id="tagId" value="${tag.tagId}" />
+
 		<table cellpadding="10">
 			<tr>
 				<td>Nom*:</td>
@@ -22,12 +32,12 @@
 			</tr>
 			<tr>
 				<td>Images*:</td>
-					<input type="hidden" id="stop_start" value="start"/>
-					<marquee id="marquee" onClick="stop_start()" >
-						<c:forEach var="image" items="${tag.images}">
-							<img src="/BlackStarV2/display_img?selectedImageId=${image.imgId}"/>
-						</c:forEach>
-					</marquee>
+				<input type="hidden" id="stop_start" value="start" />
+				<marquee id="marquee" onClick="stop_start()">
+					<c:forEach var="image" items="${tag.images}">
+						<img src="/BlackStarV2/display_img?selectedImageId=${image.imgId}" />
+					</c:forEach>
+				</marquee>
 				</td>
 			</tr>
 			<tr>
