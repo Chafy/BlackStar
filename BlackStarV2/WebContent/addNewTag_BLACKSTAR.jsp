@@ -4,9 +4,9 @@
 <c:set var="now" value="<%=new java.util.Date()%>" />
 
 <center>
-	<form action="create_tag" method="post">
-		<input type="hidden" id="isOwner" value="${isOwner}" /> <input
-			type="hidden" id="isAdmin" value="${isAdmin}" }/>
+	<form action="create_tag" method="post" enctype="multipart/form-data">
+		<input type="hidden" id="isOwner" value="${isOwner}"/>
+		<input type="hidden" id="isAdmin" value="${isAdmin}"/>
 
 		<table>
 			<tr>
@@ -20,10 +20,10 @@
 		<table cellpadding="10">
 			<tr>
 				<td>Nom*:</td>
-				<td><input name="tag_name" value="" /></td>
+				<td><input type="text" name="tag_name" value="" /></td>
 			</tr>
 			<tr>
-				<td>Images*:</td>
+				<td>Images:</td>
 			</tr>
 			<tr>
 				<td colspan="4"><input type="file" accept=".png"
@@ -32,34 +32,34 @@
 			<tr>
 				<td>Date de prise*:</td>
 				<td><fmt:formatDate pattern="dd/MM/yyyy" value="${now}"></fmt:formatDate></td>
-				<td>Identifiant responsable:</td>
-				<td><input disabled="disabled" name=tag_responsible
-					value=${responsbaleLogin } /></td>
+				<td>Identifiant responsable*:</td>
+				<td><input disabled="disabled" name="tag_responsible"
+					value="${userConnected}"/></td>
 
 			</tr>
 			<tr>
-				<td>Support:</td>
-				<td><input name="tag_support" value="" /></td>
+				<td>Support*:</td>
+				<td><input type="text" name="tag_support" value="" /></td>
 				<td>Spécificité du support:</td>
-				<td><input name="tag_support_specificity" value="" /></td>
+				<td><input type="text" name="tag_support_specificity" value="" /></td>
 			</tr>
 			<tr>
-				<td>Lieu:</td>
-				<td><input name="tag_place" value="" /></td>
+				<td>Lieu*:</td>
+				<td><input type="text" name="tag_place" value="" /></td>
 				<td>Taille:</td>
-				<td><input name="tag_size" value="" /></td>
+				<td><input type="text" name="tag_size" value="" /></td>
 			</tr>
 			<tr>
 				<td>Technique utilisée:</td>
-				<td><input name="tag_technique" value="" /></td>
+				<td><input type="text" name="tag_technique" value="" /></td>
 				<td>Résidus / déchets:</td>
-				<td><input name="tag_trash" value="" /></td>
+				<td><input type="text" name="tag_trash" value="" /></td>
 			</tr>
 			<tr>
 				<td>Auteur (Nom):</td>
-				<td><input name="tag_author_firstname" value="" /></td>
+				<td><input type="text" name="tag_author_firstname" value="" /></td>
 				<td>Auteur (Prénom):</td>
-				<td><input name="tag_author_lastname" value="" /></td>
+				<td><input type="text" name="tag_author_lastname" value="" /></td>
 			</tr>
 			<tr>
 				<td>Identitée vérifiée?:</td>
@@ -70,16 +70,17 @@
 				<td>Commentaire et signes identifiants:</td>
 			</tr>
 			<tr>
-				<td colspan="4"><textarea name="commentsTextBox" cols="50"
-						rows="5">
-						</textarea> <br /></td>
+				<td colspan="4">
+					<textarea name="commentsTextBox" cols="50" rows="5"></textarea><br />
+				</td>
 			</tr>
 
 		</table>
 		<table>
 			<tr>
 				<td>
-					<button style="margin: 30px" type="submit">Valider</button>
+				<input type="submit" value="Valider"/>
+				<span>  </span>
 				</td>
 				<td><a href="/BlackStarV2/tags">Retour</a></td>
 			</tr>

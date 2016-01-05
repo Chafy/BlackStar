@@ -1,5 +1,10 @@
 package fr.sigl.intg.controller;
 
+import java.io.DataInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -7,7 +12,12 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Set;
 
+import javax.servlet.http.Part;
+
+import fr.sigl.intg.model.Image;
+import fr.sigl.intg.model.ImageDAO;
 import fr.sigl.intg.model.Tag;
 import fr.sigl.intg.model.TagDAO;
 import fr.sigl.intg.model.Userlogin;
@@ -80,7 +90,7 @@ public class TagController {
 	// Création des fiches de tag
 	public void createNewTag(String name, String userConnected, String support, String support_specificity,
 			String place, String size, String technique, String trash, String author_firstname, String author_lastname,
-			String isVerified) {
+			String isVerified, Part filePart) {
 		
 		Tag newTag = new Tag();
 		newTag.setTagName(name);
@@ -104,6 +114,28 @@ public class TagController {
 		TagDAO tagDAO = new TagDAO();
 		tagDAO.persist(newTag);
 		
+		if (filePart != null && !filePart.getSubmittedFileName().equals("")) {
+            try {
+				Image image = new Image();
+				image.setTag((Tag) tagDAO.findByExample(newTag).get(0));
+				InputStream inputStream = filePart.getInputStream();	
+				DataInputStream dataIs = new DataInputStream(inputStream);
+				byte[] imgBytes = new byte[(int)filePart.getSize()];
+				dataIs.readFully(imgBytes);
+				image.setImgBytes(imgBytes);
+				
+				ImageDAO imageDAO = new ImageDAO();
+				imageDAO.persist(image);
+				Set<Image> images = newTag.getImages();
+				images.add((Image) imageDAO.findByExample(image).get(0));
+				newTag.setImages(images);
+				tagDAO.merge(newTag);
+				
+            } catch (IOException e) {
+				e.printStackTrace();
+			}
+        }
+
 	}
 
 	public List findAllTags() {
