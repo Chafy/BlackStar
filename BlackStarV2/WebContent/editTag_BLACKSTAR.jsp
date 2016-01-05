@@ -22,8 +22,13 @@
 			</tr>
 			<tr>
 				<td>Images*:</td>
-				<td><img
-					src="/BlackStarV2/display_img?selectedTagId=${tag.tagId}" /></td>
+					<input type="hidden" id="stop_start" value="start"/>
+					<marquee id="marquee" onClick="stop_start()" >
+						<c:forEach var="image" items="${tag.images}">
+							<img src="/BlackStarV2/display_img?selectedImageId=${image.imgId}"/>
+						</c:forEach>
+					</marquee>
+				</td>
 			</tr>
 			<tr>
 				<td colspan="4"><input type="file" accept=".png"
@@ -97,6 +102,16 @@
 		idVerif.disabled = true;
 		submitB.disabled = true;
 
+	}
+	
+	function stop_start() {
+		if (document.getElementById('stop_start').value == 'start') {
+			document.getElementById('stop_start').value = 'stop';
+			document.getElementById('marquee').start()
+		} else {
+			document.getElementById('stop_start').value = 'start';
+			document.getElementById('marquee').stop()	
+		}
 	}
 </script>
 <%@include file="includes/footer.jsp"%>
