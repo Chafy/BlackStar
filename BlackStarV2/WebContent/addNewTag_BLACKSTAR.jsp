@@ -1,4 +1,3 @@
-
 <%@include file="includes/header.jsp"%>
 
 <c:set var="now" value="<%=new java.util.Date()%>" />
@@ -35,7 +34,6 @@
 				<td>Identifiant responsable*:</td>
 				<td><input disabled="disabled" name="tag_responsible"
 					value="${userConnected}"/></td>
-
 			</tr>
 			<tr>
 				<td>Support*:</td>
@@ -74,7 +72,6 @@
 					<textarea name="commentsTextBox" cols="50" rows="5"></textarea><br />
 				</td>
 			</tr>
-
 		</table>
 		<table>
 			<tr>

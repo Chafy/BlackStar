@@ -17,6 +17,8 @@ import javax.servlet.http.Part;
 
 import fr.sigl.intg.controller.LoginController;
 import fr.sigl.intg.controller.TagController;
+import fr.sigl.intg.controller.UserController;
+import fr.sigl.intg.model.Userlogin;
 
 @MultipartConfig
 public class Servlet extends HttpServlet {
@@ -42,6 +44,7 @@ public class Servlet extends HttpServlet {
 		
 		LoginController loginController = new LoginController();
 		TagController tagController = new TagController();
+		UserController userController = new UserController();
 		
 		String url = request.getRequestURI();
 		
@@ -59,6 +62,16 @@ public class Servlet extends HttpServlet {
 				break;
 			case "/BlackStarV2/tags":
 				request.setAttribute("tagList", tagController.findAllTags());
+				request.getRequestDispatcher("/mainpage_admin_BLACKSTAR.jsp").forward(request, response);
+			case "/BlackStarV2/search_tags":
+				String name_searchform = request.getParameter("name_searchform");
+				String author_lastname_searchform = request.getParameter("author_lastname_searchform");
+				String author_firstname_searchform = request.getParameter("author_firstname_searchform");
+				String login_searchform = request.getParameter("login_searchform");
+				
+				request.setAttribute("tagList", tagController.searchTags(name_searchform, author_firstname_searchform,
+						author_lastname_searchform, login_searchform));
+				
 				request.getRequestDispatcher("/mainpage_admin_BLACKSTAR.jsp").forward(request, response);
 			case "/BlackStarV2/add":
 				request.getRequestDispatcher("/addNewTag_BLACKSTAR.jsp").forward(request,response);
@@ -84,8 +97,15 @@ public class Servlet extends HttpServlet {
 			case "/BlackStarV2/edit":
 				//TODO
 				break;
-			case "/BLackStarV2/gestion":
-				//TODO
+			case "/BlackStarV2/gestion":
+				request.getRequestDispatcher("/user_administration_BLACKSTAR.jsp").forward(request, response);
+				break;
+			case "/BlackStarV2/add_user":
+				String newUserLogin = request.getParameter("login_userform");
+				String newUser_password = request.getParameter("password_userform");
+				String newUser_type = request.getParameter("type_userform");
+				userController.addUser(newUserLogin, newUser_password, newUser_type);
+				request.getRequestDispatcher("/user_administration_BLACKSTAR.jsp").forward(request, response);
 				break;
 			default:
 				break;
