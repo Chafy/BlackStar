@@ -96,6 +96,7 @@
 		var idVerif = document.getElementById("isVerifiedId");
 		idVerif.disabled = false;
 	}
+	idVerif.disabled = false;
 	if (document.getElementById("isOwner").value === "true") {
 		var submitB = document.getElementById("submitButton");
 		submitB.disabled = false;
