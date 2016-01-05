@@ -3,11 +3,15 @@ package fr.sigl.intg.controller;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.sql.Date;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.List;
 
 import fr.sigl.intg.model.Tag;
+import fr.sigl.intg.model.TagDAO;
+import fr.sigl.intg.model.Userlogin;
+import fr.sigl.intg.model.UserloginDAO;
 
 /** 
  *  {@Création d'un fiche de tag, @Création d'un dossier de support judiciaire, @Edition d'une fiche de tag, @Rechercher parmi les fiches de tag}
@@ -23,8 +27,8 @@ public class TagController {
 	public void generateReport(Tag tag) {
 	}
 
-	// Création des fiches de tag
-	public void createNewTag(Connection db, String name, String user_id, String support,
+	
+	/*public void createNewTag(Connection db, String name, String user_id, String support,
 			String support_specificity, String place, String size,
 			String technique, String trash, String author_firstname,
 			String author_lastname, String isVerified) {
@@ -67,10 +71,39 @@ public class TagController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
+	}*/
 	
 	// Edition d'une fiche de tag
 	public void editTag(Connection db, int id) {
+	}
+
+	// Création des fiches de tag
+	public void createNewTag(String name, String userConnected, String support, String support_specificity,
+			String place, String size, String technique, String trash, String author_firstname, String author_lastname,
+			String isVerified) {
+		
+		Tag newTag = new Tag();
+		newTag.setTagName(name);
+		newTag.setTagSupport(support);
+		newTag.setTagSupportspecificity(support_specificity);
+		newTag.setTagPlace(place);
+		newTag.setTagSize(size);
+		newTag.setTagUsedtechnique(technique);
+		newTag.setTagTrashleft(trash);
+		newTag.setTagAuthorfirstname(author_firstname);
+		newTag.setTagAuthorlastname(author_lastname);
+		newTag.setTagIdverified(Boolean.valueOf(isVerified));
+		newTag.setTagRegistrationdate(new Date(Calendar.getInstance().getTime().getTime()));
+		
+		UserloginDAO userloginDAO = new UserloginDAO();
+		Userlogin userlogin = new Userlogin();
+		userlogin.setUserLogin(userConnected);
+		userlogin = (Userlogin) userloginDAO.findByExample(userlogin).get(0);
+		newTag.setUserlogin(userlogin);
+		
+		TagDAO tagDAO = new TagDAO();
+		tagDAO.persist(newTag);
+		
 	}
 
 	/*public List<String[]> findAllTags(Connection db) {

@@ -6,7 +6,7 @@
     <class name="fr.sigl.intg.model.Tag" table="tag" schema="public">
         <id name="tagId" type="int">
             <column name="tag_id" />
-            <generator class="assigned" />
+            <generator class="identity" />
         </id>
         <many-to-one name="userlogin" class="fr.sigl.intg.model.Userlogin" fetch="select">
             <column name="user_id" not-null="true" />
