@@ -7,6 +7,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Objects;
 
 import fr.sigl.intg.model.Tag;
 import fr.sigl.intg.model.TagDAO;
@@ -21,8 +22,43 @@ public class TagController {
 	public void SaveOrUpdateTag(Tag tag) {
 	}
 
-	public void searchTags(Connection db, String name, String authorFirstName, String authorLastName, String responsibleUser) {
+	public List searchTags(String name, String authorFirstName, String authorLastName, String responsibleUser) {
+		
+		TagDAO tagDAO = new TagDAO();
+		List tagList = new ArrayList<>();
+		boolean shouldBeEmpty = false;
+
+        Tag tagEntity = new Tag();
+        if (!Objects.equals(name, ""))
+        	tagEntity.setTagName(name);
+        if (!Objects.equals(authorFirstName, ""))
+            tagEntity.setTagAuthorfirstname(authorFirstName);
+        if (!Objects.equals(authorLastName, ""))
+            tagEntity.setTagAuthorlastname(authorLastName);
+        if (!Objects.equals(responsibleUser, ""))
+        {
+    		UserloginDAO userloginDAO = new UserloginDAO();
+    		Userlogin tmp = new Userlogin();
+    		tmp.setUserLogin(responsibleUser);
+    		
+    		List userList = userloginDAO.findByExample(tmp);
+    		
+    		if (!userList.isEmpty()) {
+    			Userlogin userlogin = (Userlogin) userloginDAO.findByExample(tmp).get(0);
+    			tagEntity.setUserlogin(userlogin);
+    		} else {
+    			shouldBeEmpty = true;
+    		}
+
+        }
+
+        if (!shouldBeEmpty)
+        	tagList = tagDAO.findByExample(tagEntity);
+
+        return tagList;
 	}
+	
+	
 
 	public void generateReport(Tag tag) {
 	}

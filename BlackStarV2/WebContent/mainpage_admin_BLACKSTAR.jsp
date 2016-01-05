@@ -11,7 +11,7 @@
 				</form>
 			</td>
 		</tr>
-		<form>
+		<form action="search_tags">
 			<tr>
 				<td>Nom :</td>
 				<td><input name="name_searchform" value="" /></td>
@@ -20,7 +20,7 @@
 				<td>Auteur (Prénom):</td>
 				<td><input name="author_firstname_searchform" value="" /></td>
 				<td>Responsable fiche:</td>
-				<td><input name="author_firstname_searchform" value="" /></td>
+				<td><input name="login_searchform" value="" /></td>
 			</tr>
 			<tr class="searchButtonTr">
 				<td></td>
@@ -54,8 +54,8 @@
 					<c:forEach var="tag" items="${tagList}">
 						<tr>
 							<td><a href="edit?tagId=${tag.tagId}">${tag.tagName}</a></td>
-							<td><a href="edit?tagId=${tag.tagId}">${tag.tagAuthorfirstname}</a></td>
 							<td><a href="edit?tagId=${tag.tagId}">${tag.tagAuthorlastname}</a></td>
+							<td><a href="edit?tagId=${tag.tagId}">${tag.tagAuthorfirstname}</a></td>
 							<td><a href="edit?tagId=${tag.tagId}">${tag.tagRegistrationdate}</a></td>
 							<td><a href="edit?tagId=${tag.tagId}">${tag.userlogin.userLogin}</a></td>
 						</tr>

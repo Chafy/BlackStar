@@ -58,6 +58,16 @@ public class Servlet extends HttpServlet {
 			case "/BlackStarV2/tags":
 				request.setAttribute("tagList", tagController.findAllTags());
 				request.getRequestDispatcher("/mainpage_admin_BLACKSTAR.jsp").forward(request, response);
+			case "/BlackStarV2/search_tags":
+				String name_searchform = request.getParameter("name_searchform");
+				String author_lastname_searchform = request.getParameter("author_lastname_searchform");
+				String author_firstname_searchform = request.getParameter("author_firstname_searchform");
+				String login_searchform = request.getParameter("login_searchform");
+				
+				request.setAttribute("tagList", tagController.searchTags(name_searchform, author_firstname_searchform,
+						author_lastname_searchform, login_searchform));
+				
+				request.getRequestDispatcher("/mainpage_admin_BLACKSTAR.jsp").forward(request, response);
 			case "/BlackStarV2/add":
 				request.getRequestDispatcher("/addNewTag_BLACKSTAR.jsp").forward(request,response);
 				break;
