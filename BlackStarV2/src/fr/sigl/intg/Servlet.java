@@ -27,6 +27,7 @@ public class Servlet extends HttpServlet {
 	private static final long serialVersionUID = -4099191990249828904L;
 
 	private String userConnected = "";
+	private String userType = "";
 	
 	public void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -43,6 +44,7 @@ public class Servlet extends HttpServlet {
 		}
 			
 		request.setAttribute("userConnected", userConnected);
+		request.setAttribute("userType", userType);
 		
 		switch (url) {
 			case "/BlackStarV2/login":
@@ -50,6 +52,7 @@ public class Servlet extends HttpServlet {
 				String password = request.getParameter("password_form");
 				if (loginController.submitLogin(login, password)) {
 					userConnected = login;
+					userType = loginController.findType(login);
 					response.sendRedirect("/BlackStarV2/tags");
 				} else
 					request.getRequestDispatcher("/login_BLACKSTAR.jsp").forward(request, response);

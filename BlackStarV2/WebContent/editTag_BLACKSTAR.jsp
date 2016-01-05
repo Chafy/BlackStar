@@ -1,11 +1,9 @@
 <%@include file="includes/header.jsp"%>
 
 <center>
-	<form id="save_modifications" action="save_modifications" method="post" enctype="multipart/form-data">
-		<input type="hidden" id="isOwner" value="${isOwner}" /> <input
-			type="hidden" id="isAdmin" value="${isAdmin}" />
-			<input
-			type="hidden" name="tagId" id="tagId" value="${tag.tagId}" />
+	<form id="save_modifications" action="save_modifications" method="post"
+		enctype="multipart/form-data">
+		<input type="hidden" name="tagId" id="tagId" value="${tag.tagId}" />
 
 		<table>
 			<tr>
@@ -22,12 +20,12 @@
 			</tr>
 			<tr>
 				<td>Images*:</td>
-					<input type="hidden" id="stop_start" value="start"/>
-					<marquee id="marquee" onClick="stop_start()" >
-						<c:forEach var="image" items="${tag.images}">
-							<img src="/BlackStarV2/display_img?selectedImageId=${image.imgId}"/>
-						</c:forEach>
-					</marquee>
+				<input type="hidden" id="stop_start" value="start" />
+				<marquee id="marquee" onClick="stop_start()">
+					<c:forEach var="image" items="${tag.images}">
+						<img src="/BlackStarV2/display_img?selectedImageId=${image.imgId}" />
+					</c:forEach>
+				</marquee>
 				</td>
 			</tr>
 			<tr>
@@ -79,14 +77,25 @@
 				<td>Commentaire et signes identifiants:</td>
 			</tr>
 			<tr>
-				<td colspan="4"><textarea form="save_modifications" name="tag_comment" name="commentsTextBox" cols="50"
-						rows="5">${tag.tagComment}</textarea> <br /></td>
+				<td colspan="4"><textarea form="save_modifications"
+						name="tag_comment" name="commentsTextBox" cols="50" rows="5">${tag.tagComment}</textarea>
+					<br /></td>
 			</tr>
 		</table>
 		<table>
 			<tr>
-				<td><button style="margin: 30px" type="submit"
-						id="submitButton">Valider</button></td>
+				<td><c:choose>
+						<c:when test="${userConnected == tag.userlogin.userLogin}">
+							<button style="margin: 30px" type="submit" id="submitButton">Valider</button>
+						</c:when>
+						<c:when test="${userType == 'admin'}">
+							<button style="margin: 30px" type="submit" id="submitButton">Valider</button>
+						</c:when>
+						<c:otherwise>
+							<button disabled="disabled" style="margin: 30px" type="submit"
+								id="submitButton">Valider</button>
+						</c:otherwise>
+					</c:choose></td>
 				<td><a href="tags">Retour</a></td>
 			</tr>
 		</table>
@@ -103,14 +112,14 @@
 		submitB.disabled = true;
 
 	}
-	
+
 	function stop_start() {
 		if (document.getElementById('stop_start').value == 'start') {
 			document.getElementById('stop_start').value = 'stop';
 			document.getElementById('marquee').start()
 		} else {
 			document.getElementById('stop_start').value = 'start';
-			document.getElementById('marquee').stop()	
+			document.getElementById('marquee').stop()
 		}
 	}
 </script>
