@@ -49,7 +49,7 @@ public class Servlet extends HttpServlet {
 		
 		String url = request.getRequestURI();
 		
-		if (userConnected.equals("")) {
+		if (userConnected.equals("") && !url.equals("/BlackStarV2/login")) {
 			request.setAttribute("errorMessage", "Vous devez d'abord vous identifier.");
 			request.getRequestDispatcher("/login_BLACKSTAR.jsp").forward(request, response);
 		}
