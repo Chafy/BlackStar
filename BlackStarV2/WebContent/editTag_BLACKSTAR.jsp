@@ -11,7 +11,7 @@
 			<tr>
 				<td><center
 						style="font-size: 16px; margin: 20px 10px 60px 10px">
-						<b>"${tag.tagName}"</b>
+						<b>${tag.tagName}</b>
 					</center></td>
 			</tr>
 		</table>
@@ -80,7 +80,7 @@
 			</tr>
 			<tr>
 				<td colspan="4"><textarea name="commentsTextBox" cols="50"
-						rows="5">"${tag.tagComment}"</textarea> <br /></td>
+						rows="5">${tag.tagComment}</textarea> <br /></td>
 			</tr>
 		</table>
 		<table>
