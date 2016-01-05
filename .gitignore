@@ -113,7 +113,10 @@ nb-configuration.xml
 
 *.iml
 .idea
-BlackStarV2/.project
-BlackStarV2/.classpath
+
+##################################################################
+######################## BlackStar.gitignore
+##################################################################
+
 RemoteSystemsTempFiles/.project
 Servers/
