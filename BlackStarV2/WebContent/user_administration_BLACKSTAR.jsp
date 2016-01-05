@@ -23,7 +23,7 @@
 						<option value="user">Utilisateur</option>
 						<option value="admin">Administrateur</option>
 				</select></td>
-				<td><button type="submit" name="addUser_button">Ajouter un utilisateur></button></td>
+				<td><button type="submit" name="addUser_button">Ajouter un utilisateur</button></td>
 
 			</tr>
 			<tr>

@@ -21,11 +21,7 @@ public class UserController {
 		
 		newUser.setUserLogin(login);
 		newUser.setUserPassword(password);
-		
-		if (type.equals("Administrateur"))
-			newUser.setUserType("admin");
-		else
-			newUser.setUserType("user");
+		newUser.setUserType(type);
 		
 		ulDAO.persist(newUser);
 
