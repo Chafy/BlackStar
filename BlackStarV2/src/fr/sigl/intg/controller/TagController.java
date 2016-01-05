@@ -151,7 +151,7 @@ public class TagController {
 	// Création des fiches de tag
 	public void createNewTag(String name, String userConnected, String support, String support_specificity,
 			String place, String size, String technique, String trash, String author_firstname, String author_lastname,
-			String isVerified, Part filePart) {
+			String isVerified, Part filePart, String comment) {
 		
 		Tag newTag = new Tag();
 		newTag.setTagName(name);
@@ -165,6 +165,7 @@ public class TagController {
 		newTag.setTagAuthorlastname(author_lastname);
 		newTag.setTagIdverified(Boolean.valueOf(isVerified));
 		newTag.setTagRegistrationdate(new Date(Calendar.getInstance().getTime().getTime()));
+		newTag.setTagComment(comment);
 		
 		UserloginDAO userloginDAO = new UserloginDAO();
 		Userlogin userlogin = new Userlogin();

@@ -95,9 +95,10 @@ public class Servlet extends HttpServlet {
 				String author_lastname = request.getParameter("tag_author_lastname");
 				String isVerified = request.getParameter("tag_isVerified");
 				Part filePart = request.getPart("image_chooser");
+				String comment = request.getParameter("tag_comment");
 				tagController.createNewTag(name, userConnected, support, support_specificity,
 						place, size, technique, trash, author_firstname,
-						author_lastname, isVerified, filePart);
+						author_lastname, isVerified, filePart, comment);
 				response.sendRedirect("/BlackStarV2/tags");
 				break;
 			case "/BlackStarV2/edit":
@@ -120,6 +121,8 @@ public class Servlet extends HttpServlet {
 				tagToUpdate.setTagAuthorfirstname(request.getParameter("tag_author_firstname"));
 				tagToUpdate.setTagAuthorlastname(request.getParameter("tag_author_lastname"));
 				tagToUpdate.setTagIdverified(Boolean.valueOf(request.getParameter("tag_idVerified")));
+				tagToUpdate.setTagComment(request.getParameter("tag_comment"));
+				
 				Part filePart2 = request.getPart("image_chooser");
 				
 				tagController.SaveOrUpdateTag(tagToUpdate, filePart2);

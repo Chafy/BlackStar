@@ -1,7 +1,7 @@
 <%@include file="includes/header.jsp"%>
 
 <center>
-	<form action="save_modifications" method="post" enctype="multipart/form-data">
+	<form id="save_modifications" action="save_modifications" method="post" enctype="multipart/form-data">
 		<input type="hidden" id="isOwner" value="${isOwner}" /> <input
 			type="hidden" id="isAdmin" value="${isAdmin}" />
 			<input
@@ -79,7 +79,7 @@
 				<td>Commentaire et signes identifiants:</td>
 			</tr>
 			<tr>
-				<td colspan="4"><textarea name="commentsTextBox" cols="50"
+				<td colspan="4"><textarea form="save_modifications" name="tag_comment" name="commentsTextBox" cols="50"
 						rows="5">${tag.tagComment}</textarea> <br /></td>
 			</tr>
 		</table>
