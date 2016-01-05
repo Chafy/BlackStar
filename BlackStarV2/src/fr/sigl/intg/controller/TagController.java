@@ -180,15 +180,9 @@ public class TagController {
 		return tagDAO.findByExample(tag);
 	}
 
-	public byte[] getImageBytes(int tagId) {
-		TagDAO tagDAO = new TagDAO();
-		Tag tag = tagDAO.findById(tagId);
-		
-		Set images = tag.getImages();
-		Image image = new Image();
-		
-		if (!images.isEmpty())
-			image = (Image) tag.getImages().toArray()[0];
+	public byte[] getImageBytes(int imageId) {
+		ImageDAO imageDAO = new ImageDAO();
+		Image image = imageDAO.findById(imageId);
 		
 		return image.getImgBytes();
 	}

@@ -21,7 +21,12 @@
 			<tr>
 				<td>Images*:</td>
 				<td>
-					<img src="/BlackStarV2/display_img?selectedTagId=${tag.tagId}"/>
+					<input type="hidden" id="stop_start" value="start"/>
+					<marquee id="marquee" onClick="stop_start()" >
+						<c:forEach var="image" items="${tag.images}">
+							<img src="/BlackStarV2/display_img?selectedImageId=${image.imgId}"/>
+						</c:forEach>
+					</marquee>
 				</td>
 			</tr>
 			<tr>
@@ -46,9 +51,9 @@
 			</tr>
 			<tr>
 				<td>Lieu:</td>
-				<td><input name="place" value=${tag.tagPlace} /></td>
+				<td><input name="place" value=${tag.tagPlace } /></td>
 				<td>Taille:</td>
-				<td><input name="size" value=${tag.tagSize} /></td>
+				<td><input name="size" value=${tag.tagSize } /></td>
 			</tr>
 			<tr>
 				<td>Technique utilisée:</td>
@@ -61,27 +66,27 @@
 				<td><input name="author_firstname"
 					value="${tag.tagAuthorfirstname}" /></td>
 				<td>Auteur (Prénom):</td>
-				<td><input name="author_lastname" value="${tag.tagAuthorlastname}" /></td>
+				<td><input name="author_lastname"
+					value="${tag.tagAuthorlastname}" /></td>
 			</tr>
 			<tr>
 				<td>Identitée vérifiée?:</td>
 				<td><input type="checkbox" name="idVerified"
-					value="${tag.tagIdverified}"/></td>
+					value="${tag.tagIdverified}" /></td>
 			</tr>
 			<tr>
 				<td>Commentaire et signes identifiants:</td>
 			</tr>
 			<tr>
-				<td colspan="4"><textarea name="commentsTextBox" cols="50" rows="5">${tag.tagComment}</textarea> <br /></td>
+				<td colspan="4"><textarea name="commentsTextBox" cols="50"
+						rows="5">${tag.tagComment}</textarea> <br /></td>
 			</tr>
 		</table>
 		<table>
 			<tr>
 				<td><button style="margin: 30px" type="submit"
 						id="submitButton" disabled="disabled">Valider</button></td>
-				<td>
-					<a href="tags">Retour</a>
-				</td>
+				<td><a href="tags">Retour</a></td>
 			</tr>
 		</table>
 	</form>
@@ -94,6 +99,16 @@
 	if (document.getElementById("isOwner").value === "true") {
 		var submitB = document.getElementById("submitButton");
 		submitB.disabled = false;
+	}
+	
+	function stop_start() {
+		if (document.getElementById('stop_start').value == 'start') {
+			document.getElementById('stop_start').value = 'stop';
+			document.getElementById('marquee').start()
+		} else {
+			document.getElementById('stop_start').value = 'start';
+			document.getElementById('marquee').stop()	
+		}
 	}
 </script>
 <%@include file="includes/footer.jsp"%>

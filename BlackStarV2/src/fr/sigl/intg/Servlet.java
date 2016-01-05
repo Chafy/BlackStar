@@ -112,8 +112,8 @@ public class Servlet extends HttpServlet {
 				request.getRequestDispatcher("/user_administration_BLACKSTAR.jsp").forward(request, response);
 				break;
 			case "/BlackStarV2/display_img":
-				String selectedTagId = request.getParameter("selectedTagId");
-				byte[] content = tagController.getImageBytes(Integer.parseInt(selectedTagId));
+				String selectedImageId = request.getParameter("selectedImageId");
+				byte[] content = tagController.getImageBytes(Integer.parseInt(selectedImageId));
 				response.setContentType("image/png");
                 response.setContentLength(content.length);
                 response.getOutputStream().write(content);
