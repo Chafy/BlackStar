@@ -11,7 +11,7 @@
 			<tr>
 				<td><center
 						style="font-size: 16px; margin: 20px 10px 60px 10px">
-						<b>${tag.tagName}</b>
+						<b>"${tag.tagName}"</b>
 					</center></td>
 			</tr>
 		</table>
@@ -45,16 +45,16 @@
 			</tr>
 			<tr>
 				<td>Support:</td>
-				<td><input name="tag_support" value=${tag.tagSupport } /></td>
+				<td><input name="tag_support" value="${tag.tagSupport }" /></td>
 				<td>Spécificité du support:</td>
 				<td><input name="tag_support_specificity"
 					value="${tag.tagSupportspecificity}" /></td>
 			</tr>
 			<tr>
 				<td>Lieu:</td>
-				<td><input name="tag_place" value=${tag.tagPlace } /></td>
+				<td><input name="tag_place" value="${tag.tagPlace }" /></td>
 				<td>Taille:</td>
-				<td><input name="tag_size" value=${tag.tagSize } /></td>
+				<td><input name="tag_size" value="${tag.tagSize }" /></td>
 			</tr>
 			<tr>
 				<td>Technique utilisée:</td>
@@ -80,7 +80,7 @@
 			</tr>
 			<tr>
 				<td colspan="4"><textarea name="commentsTextBox" cols="50"
-						rows="5">${tag.tagComment}</textarea> <br /></td>
+						rows="5">"${tag.tagComment}"</textarea> <br /></td>
 			</tr>
 		</table>
 		<table>
