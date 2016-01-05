@@ -107,6 +107,13 @@ public class Servlet extends HttpServlet {
 				userController.addUser(newUserLogin, newUser_password, newUser_type);
 				request.getRequestDispatcher("/user_administration_BLACKSTAR.jsp").forward(request, response);
 				break;
+			case "display_img":
+				String tagId = request.getParameter("selectedTagId");
+				byte[] content = tagController.getImageBytes(Integer.parseInt(tagId));
+				response.setContentType("image/png");
+                response.setContentLength(content.length);
+                response.getOutputStream().write(content);
+				break;
 			default:
 				break;
 		}
