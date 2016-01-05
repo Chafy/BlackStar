@@ -20,6 +20,9 @@
 			</tr>
 			<tr>
 				<td>Images*:</td>
+				<td>
+					<img src="/BlackStarV2/display_img?selectedTagId=${tag.tagId}"/>
+				</td>
 			</tr>
 			<tr>
 				<td colspan="4"><input type="file" accept=".png"
