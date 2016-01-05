@@ -200,7 +200,7 @@ public class Tag implements java.io.Serializable {
 		if (getTagIdverified())
 			result += System.lineSeparator() + "La personne qui est l'auteur de cette dégradation a été identifiée comme M./Mme  " + getTagAuthorlastname() + " " + getTagAuthorfirstname() + ".";
 		else
-			result += System.lineSeparator() + "La personne suspectée d'être à l'origine de cette dégradation est M./Mme" + getTagAuthorlastname() + getTagAuthorfirstname() + ".";
+			result += System.lineSeparator() + "La personne suspectée d'être à l'origine de cette dégradation est M./Mme " + getTagAuthorlastname() + " " + getTagAuthorfirstname() + ".";
 		
 		result += System.lineSeparator() + "Commentaires supplémentaires : " + getTagComment();
 		

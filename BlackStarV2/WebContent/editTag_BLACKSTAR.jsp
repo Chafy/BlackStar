@@ -1,13 +1,8 @@
 <%@include file="includes/header.jsp"%>
 
 <center>
-	<form id="save_modifications" action="save_modifications" method="post" enctype="multipart/form-data">
-		<input type="hidden" id="isOwner" value="${isOwner}" /> <input
-			type="hidden" id="isAdmin" value="${isAdmin}" />
-
 	<table>
 		<tr>
-		<td>                                                                                        </td>
 			<td><center style="font-size: 16px; margin: 20px 10px 60px 10px">
 					<b>${tag.tagName}</b>
 				</center></td>
@@ -24,6 +19,9 @@
 	</form>
 	<form action="save_modifications" method="post"
 		enctype="multipart/form-data">
+		<input type="hidden" id="isOwner" value="${isOwner}" /> <input
+			type="hidden" id="isAdmin" value="${isAdmin}" />
+		
 		<input type="hidden" name="tagId" id="tagId" value="${tag.tagId}" />
 
 		<table cellpadding="10">
