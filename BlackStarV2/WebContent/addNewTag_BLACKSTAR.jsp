@@ -3,7 +3,7 @@
 <c:set var="now" value="<%=new java.util.Date()%>" />
 
 <center>
-	<form action="create_tag" method="post" enctype="multipart/form-data">
+	<form id="create_tag" action="create_tag" method="post" enctype="multipart/form-data">
 		<input type="hidden" id="isOwner" value="${isOwner}"/>
 		<input type="hidden" id="isAdmin" value="${isAdmin}"/>
 
@@ -69,7 +69,8 @@
 			</tr>
 			<tr>
 				<td colspan="4">
-					<textarea name="commentsTextBox" cols="50" rows="5"></textarea><br />
+					<textarea form="create_tag" name="tag_comment" cols="50" rows="5"></textarea>
+					<br />
 				</td>
 			</tr>
 		</table>

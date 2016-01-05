@@ -1,6 +1,7 @@
 <%@include file="includes/header.jsp"%>
 
 <center>
+	<form id="save_modifications" action="save_modifications" method="post" enctype="multipart/form-data">
 		<input type="hidden" id="isOwner" value="${isOwner}" /> <input
 			type="hidden" id="isAdmin" value="${isAdmin}" />
 
@@ -55,16 +56,16 @@
 			</tr>
 			<tr>
 				<td>Support:</td>
-				<td><input name="tag_support" value=${tag.tagSupport } /></td>
+				<td><input name="tag_support" value="${tag.tagSupport}" /></td>
 				<td>Spécificité du support:</td>
 				<td><input name="tag_support_specificity"
 					value="${tag.tagSupportspecificity}" /></td>
 			</tr>
 			<tr>
 				<td>Lieu:</td>
-				<td><input name="tag_place" value=${tag.tagPlace } /></td>
+				<td><input name="tag_place" value="${tag.tagPlace}" /></td>
 				<td>Taille:</td>
-				<td><input name="tag_size" value=${tag.tagSize } /></td>
+				<td><input name="tag_size" value="${tag.tagSize}" /></td>
 			</tr>
 			<tr>
 				<td>Technique utilisée:</td>
@@ -89,7 +90,7 @@
 				<td>Commentaire et signes identifiants:</td>
 			</tr>
 			<tr>
-				<td colspan="4"><textarea name="commentsTextBox" cols="50"
+				<td colspan="4"><textarea form="save_modifications" name="tag_comment" name="commentsTextBox" cols="50"
 						rows="5">${tag.tagComment}</textarea> <br /></td>
 			</tr>
 		</table>
