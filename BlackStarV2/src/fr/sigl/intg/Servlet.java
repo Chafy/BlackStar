@@ -9,9 +9,11 @@ import java.util.List;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 import fr.sigl.intg.controller.LoginController;
 import fr.sigl.intg.controller.TagController;
@@ -19,6 +21,7 @@ import fr.sigl.intg.controller.UserController;
 import fr.sigl.intg.model.Tag;
 import fr.sigl.intg.model.Userlogin;
 
+@MultipartConfig
 public class Servlet extends HttpServlet {
 
 	private static final long serialVersionUID = -4099191990249828904L;
@@ -45,6 +48,8 @@ public class Servlet extends HttpServlet {
 		UserController userController = new UserController();
 		
 		String url = request.getRequestURI();
+		
+		request.setAttribute("userConnected", userConnected);
 		
 		switch (url) {
 			case "/BlackStarV2/login":
@@ -84,9 +89,10 @@ public class Servlet extends HttpServlet {
 				String author_firstname = request.getParameter("tag_author_firstname");
 				String author_lastname = request.getParameter("tag_author_lastname");
 				String isVerified = request.getParameter("tag_isVerified");
+				Part filePart = request.getPart("image_chooser");
 				tagController.createNewTag(name, userConnected, support, support_specificity,
 						place, size, technique, trash, author_firstname,
-						author_lastname, isVerified);
+						author_lastname, isVerified, filePart);
 				response.sendRedirect("/BlackStarV2/tags");
 				break;
 			case "/BlackStarV2/edit":
