@@ -1,11 +1,12 @@
+
 <%@include file="includes/header.jsp"%>
 
 <c:set var="now" value="<%=new java.util.Date()%>" />
 
 <center>
 	<form action="create_tag" method="post">
-	<input type="hidden" id="isOwner" value="${isOwner}"/>
-	<input type="hidden" id="isAdmin" value="${isAdmin}" }/>
+		<input type="hidden" id="isOwner" value="${isOwner}" /> <input
+			type="hidden" id="isAdmin" value="${isAdmin}" }/>
 
 		<table>
 			<tr>
@@ -26,7 +27,7 @@
 			</tr>
 			<tr>
 				<td colspan="4"><input type="file" accept=".png"
-					name="image_chooser"/></td>
+					name="image_chooser" /></td>
 			</tr>
 			<tr>
 				<td>Date de prise*:</td>
@@ -62,7 +63,8 @@
 			</tr>
 			<tr>
 				<td>Identitée vérifiée?:</td>
-				<td><input type="checkbox" id="isVerifiedId" name="tag_isVerified" value="" disabled="disabled" /></td>
+				<td><input type="checkbox" id="isVerifiedId"
+					name="tag_isVerified" value="" disabled="disabled" /></td>
 			</tr>
 			<tr>
 				<td>Commentaire et signes identifiants:</td>
@@ -70,19 +72,16 @@
 			<tr>
 				<td colspan="4"><textarea name="commentsTextBox" cols="50"
 						rows="5">
-					</textarea> <br /></td>
+						</textarea> <br /></td>
 			</tr>
 
 		</table>
 		<table>
 			<tr>
-				<td><button style="margin: 30px" type="submit">Valider</button>
-				</td>
 				<td>
-					<form style="margin: 30px" action="Go_back">
-						<button style="margin: 30px" type="submit">Retour</button>
-					</form>
+					<button style="margin: 30px" type="submit">Valider</button>
 				</td>
+				<td><a href="/BlackStarV2/tags">Retour</a></td>
 			</tr>
 		</table>
 	</form>
@@ -90,10 +89,10 @@
 </center>
 
 <script>
-if (document.getElementById("isAdmin").value === "true") {
-	var idVerif = document.getElementById("isVerifiedId");
-	idVerif.disabled = false;
-}
-</script>
+	if (document.getElementById("isAdmin").value === "true") {
+		var idVerif = document.getElementById("isVerifiedId");
+		idVerif.disabled = false;
+	}
+	</script>
 
 <%@include file="includes/footer.jsp"%>
