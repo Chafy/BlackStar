@@ -71,7 +71,7 @@
 			</tr>
 			<tr>
 				<td colspan="4"><textarea name="commentsTextBox" cols="50"
-						rows="5"></textarea><br /></td>
+						rows="5"></textarea><br/></td>
 			</tr>
 		</table>
 		<table>
