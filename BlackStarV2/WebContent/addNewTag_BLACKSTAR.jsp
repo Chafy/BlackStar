@@ -34,7 +34,7 @@
 				<td><fmt:formatDate pattern="dd/MM/yyyy" value="${now}"></fmt:formatDate></td>
 				<td>Identifiant responsable:</td>
 				<td><input disabled="disabled" name=tag_responsible
-					value=${responsbaleLogin } /></td>
+					value="${responsableLogin}" /></td>
 
 			</tr>
 			<tr>
@@ -71,10 +71,8 @@
 			</tr>
 			<tr>
 				<td colspan="4"><textarea name="commentsTextBox" cols="50"
-						rows="5">
-						</textarea> <br /></td>
+						rows="5"></textarea><br /></td>
 			</tr>
-
 		</table>
 		<table>
 			<tr>
