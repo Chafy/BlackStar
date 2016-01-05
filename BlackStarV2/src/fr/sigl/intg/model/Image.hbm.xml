@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jan 3, 2016 2:05:43 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="fr.sigl.intg.model.Image" table="image" schema="public">
+        <id name="imgId" type="int">
+            <column name="img_id" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="tag" class="fr.sigl.intg.model.Tag" fetch="select">
+            <column name="tag_id" not-null="true" />
+        </many-to-one>
+        <property name="imgBytes" type="binary">
+            <column name="img_bytes" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

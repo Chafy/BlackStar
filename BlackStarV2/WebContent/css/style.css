@@ -1,0 +1,56 @@
+td {
+	text-align: left;
+	vertical-align: top;
+	font-family: Tahoma;
+	font-size: 12px;
+}
+
+td.searchButtonTd {
+	text-align: right;
+	margin : auto 30 auto auto
+}
+
+a.tagrow {
+	display: block;
+}
+
+
+tr.searchButtonTr {
+	text-align: right;
+}
+
+* {
+	font-family: Tahoma;
+}
+
+input.searchbutton {
+	text-align: right;
+	vertical-align: top;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+form {
+	margin: 0px;
+}
+
+a {
+	font-family: Arial;
+	font-size: 13px;
+	text-decoration: none;
+	font-weight: bold;
+	color: #002449;
+}
+
+A:Hover {
+	color: #002449;
+	text-decoration: underline;
+}
+
+H1 {
+	color: #002449;
+	font-weight: bold;
+	font-size: 16px;
+}

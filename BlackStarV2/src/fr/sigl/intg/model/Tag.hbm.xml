@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jan 3, 2016 2:05:43 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="fr.sigl.intg.model.Tag" table="tag" schema="public">
+        <id name="tagId" type="int">
+            <column name="tag_id" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="userlogin" class="fr.sigl.intg.model.Userlogin" fetch="select">
+            <column name="user_id" not-null="true" />
+        </many-to-one>
+        <property name="tagName" type="string">
+            <column name="tag_name" length="1024" not-null="true" />
+        </property>
+        <property name="tagRegistrationdate" type="date">
+            <column name="tag_registrationdate" length="13" not-null="true" />
+        </property>
+        <property name="tagSupport" type="string">
+            <column name="tag_support" length="1024" not-null="true" />
+        </property>
+        <property name="tagSupportspecificity" type="string">
+            <column name="tag_supportspecificity" length="1024" />
+        </property>
+        <property name="tagPlace" type="string">
+            <column name="tag_place" length="1024" not-null="true" />
+        </property>
+        <property name="tagSize" type="string">
+            <column name="tag_size" length="1024" />
+        </property>
+        <property name="tagAuthorfirstname" type="string">
+            <column name="tag_authorfirstname" length="1024" />
+        </property>
+        <property name="tagAuthorlastname" type="string">
+            <column name="tag_authorlastname" length="1024" />
+        </property>
+        <property name="tagIdverified" type="java.lang.Boolean">
+            <column name="tag_idverified" />
+        </property>
+        <property name="tagUsedtechnique" type="string">
+            <column name="tag_usedtechnique" length="1024" />
+        </property>
+        <property name="tagTrashleft" type="string">
+            <column name="tag_trashleft" length="1024" />
+        </property>
+        <property name="tagComment" type="string">
+            <column name="tag_comment" length="1024" />
+        </property>
+        <set name="images" table="image" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="tag_id" not-null="true" />
+            </key>
+            <one-to-many class="fr.sigl.intg.model.Image" />
+        </set>
+    </class>
+</hibernate-mapping>
