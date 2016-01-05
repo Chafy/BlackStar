@@ -1,4 +1,5 @@
 package fr.sigl.intg;
+
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -22,7 +23,7 @@ public class Servlet extends HttpServlet {
 	private static final long serialVersionUID = -4099191990249828904L;
 
 	//private Connection connection = null;
-	//private String userConnected = "";
+	private String userConnected = "";
 	
 	/*public void init(ServletConfig config) throws ServletException {
 	try {
@@ -48,18 +49,34 @@ public class Servlet extends HttpServlet {
 			case "/BlackStarV2/login":
 				String login = request.getParameter("login_form");
 				String password = request.getParameter("password_form");
-				if (loginController.submitLogin(login, password))
+				if (loginController.submitLogin(login, password)) {
+					userConnected = login;
 					response.sendRedirect("/BlackStarV2/tags");
-				else
+				} else
 					request.getRequestDispatcher("/login_BLACKSTAR.jsp").forward(request, response);
 				break;
 			case "/BlackStarV2/tags":
+				request.setAttribute("tagList", tagController.findAllTags());
 				request.getRequestDispatcher("/mainpage_admin_BLACKSTAR.jsp").forward(request, response);
 			case "/BlackStarV2/add":
-				//TODO
+				request.getRequestDispatcher("/addNewTag_BLACKSTAR.jsp").forward(request,response);
 				break;
 			case "/BlackStarV2/create_tag":
-				//TODO
+				String name = request.getParameter("tag_name");
+				String user_id = request.getParameter("tag_responsible");
+				String support = request.getParameter("tag_support");
+				String support_specificity= request.getParameter("tag_support_specificity");
+				String place = request.getParameter("tag_place");
+				String size = request.getParameter("tag_size");
+				String technique = request.getParameter("tag_technique");
+				String trash = request.getParameter("tag_trash");
+				String author_firstname = request.getParameter("tag_author_firstname");
+				String author_lastname = request.getParameter("tag_author_lastname");
+				String isVerified = request.getParameter("tag_isVerified");
+				tagController.createNewTag(name, userConnected, support, support_specificity,
+						place, size, technique, trash, author_firstname,
+						author_lastname, isVerified);
+				response.sendRedirect("/BlackStarV2/tags");
 				break;
 			case "/BlackStarV2/edit":
 				//TODO

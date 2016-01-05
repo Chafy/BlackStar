@@ -6,7 +6,7 @@
     <class name="fr.sigl.intg.model.Image" table="image" schema="public">
         <id name="imgId" type="int">
             <column name="img_id" />
-            <generator class="assigned" />
+            <generator class="identity" />
         </id>
         <many-to-one name="tag" class="fr.sigl.intg.model.Tag" fetch="select">
             <column name="tag_id" not-null="true" />

@@ -51,13 +51,13 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="tags" items="${tagList}">
+					<c:forEach var="tag" items="${tagList}">
 						<tr>
-							<td><a href="edit?tagId=${tags[5]}">${tags[0]}</a></td>
-							<td><a href="edit?tagId=${tags[5]}">${tags[2]}</a></td>
-							<td><a href="edit?tagId=${tags[5]}">${tags[1]}</a></td>
-							<td><a href="edit?tagId=${tags[5]}">${tags[3]}</a></td>
-							<td><a href="edit?tagId=${tags[5]}">${tags[4]}</a></td>
+							<td><a href="edit?tagId=${tag.tagId}">${tag.tagName}</a></td>
+							<td><a href="edit?tagId=${tag.tagId}">${tag.tagAuthorfirstname}</a></td>
+							<td><a href="edit?tagId=${tag.tagId}">${tag.tagAuthorlastname}</a></td>
+							<td><a href="edit?tagId=${tag.tagId}">${tag.tagRegistrationdate}</a></td>
+							<td><a href="edit?tagId=${tag.tagId}">${tag.userlogin.userLogin}</a></td>
 						</tr>
 					</c:forEach>
 				</tbody>

@@ -6,7 +6,7 @@
     <class name="fr.sigl.intg.model.Userlogin" table="userlogin" schema="public">
         <id name="userId" type="int">
             <column name="user_id" />
-            <generator class="assigned" />
+            <generator class="identity" />
         </id>
         <property name="userLogin" type="string">
             <column name="user_login" length="1024" not-null="true" />
