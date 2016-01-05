@@ -1,9 +1,11 @@
 <%@include file="includes/header.jsp"%>
 
 <center>
-	<form action="edit_tag">
+	<form action="save_modifications" method="post" enctype="multipart/form-data">
 		<input type="hidden" id="isOwner" value="${isOwner}" /> <input
 			type="hidden" id="isAdmin" value="${isAdmin}" />
+			<input
+			type="hidden" name="tagId" id="tagId" value="${tag.tagId}" />
 
 		<table>
 			<tr>
@@ -16,13 +18,12 @@
 		<table cellpadding="10">
 			<tr>
 				<td>Nom*:</td>
-				<td><input name="name" value="${tag.tagName}" /></td>
+				<td><input name="tag_name" value="${tag.tagName}" /></td>
 			</tr>
 			<tr>
 				<td>Images*:</td>
-				<td>
-					<img src="/BlackStarV2/display_img?selectedTagId=${tag.tagId}"/>
-				</td>
+				<td><img
+					src="/BlackStarV2/display_img?selectedTagId=${tag.tagId}" /></td>
 			</tr>
 			<tr>
 				<td colspan="4"><input type="file" accept=".png"
@@ -39,62 +40,63 @@
 			</tr>
 			<tr>
 				<td>Support:</td>
-				<td><input name="support" value=${tag.tagSupport } /></td>
+				<td><input name="tag_support" value=${tag.tagSupport } /></td>
 				<td>Spécificité du support:</td>
-				<td><input name="supportSpecificity"
+				<td><input name="tag_support_specificity"
 					value="${tag.tagSupportspecificity}" /></td>
 			</tr>
 			<tr>
 				<td>Lieu:</td>
-				<td><input name="place" value=${tag.tagPlace} /></td>
+				<td><input name="tag_place" value=${tag.tagPlace } /></td>
 				<td>Taille:</td>
-				<td><input name="size" value=${tag.tagSize} /></td>
+				<td><input name="tag_size" value=${tag.tagSize } /></td>
 			</tr>
 			<tr>
 				<td>Technique utilisée:</td>
-				<td><input name="usedTechnique" value=${tag.tagUsedtechnique } /></td>
+				<td><input name="tag_technique" value="${tag.tagUsedtechnique}" /></td>
 				<td>Résidus / déchets:</td>
-				<td><input name="trashLeft" value=${tag.tagTrashleft } /></td>
+				<td><input name="tag_trash" value="${tag.tagTrashleft}" /></td>
 			</tr>
 			<tr>
 				<td>Auteur (Nom):</td>
-				<td><input name="author_firstname"
+				<td><input name="tag_author_firstname"
 					value="${tag.tagAuthorfirstname}" /></td>
 				<td>Auteur (Prénom):</td>
-				<td><input name="author_lastname" value="${tag.tagAuthorlastname}" /></td>
+				<td><input name="tag_author_lastname"
+					value="${tag.tagAuthorlastname}" /></td>
 			</tr>
 			<tr>
 				<td>Identitée vérifiée?:</td>
 				<td><input type="checkbox" name="idVerified"
-					value="${tag.tagIdverified}"/></td>
+					value="${tag.tagIdverified}" /></td>
 			</tr>
 			<tr>
 				<td>Commentaire et signes identifiants:</td>
 			</tr>
 			<tr>
-				<td colspan="4"><textarea name="commentsTextBox" cols="50" rows="5">${tag.tagComment}</textarea> <br /></td>
+				<td colspan="4"><textarea name="commentsTextBox" cols="50"
+						rows="5">${tag.tagComment}</textarea> <br /></td>
 			</tr>
 		</table>
 		<table>
 			<tr>
 				<td><button style="margin: 30px" type="submit"
-						id="submitButton" disabled="disabled">Valider</button></td>
-				<td>
-					<a href="tags">Retour</a>
-				</td>
+						id="submitButton">Valider</button></td>
+				<td><a href="tags">Retour</a></td>
 			</tr>
 		</table>
 	</form>
 </center>
 <script>
-	if (document.getElementById("isAdmin").value === "true") {
-		var idVerif = document.getElementById("isVerifiedId");
-		idVerif.disabled = false;
-	}
-	idVerif.disabled = false;
-	if (document.getElementById("isOwner").value === "true") {
+	if (document.getElementById("isOwner").value === "false") {
 		var submitB = document.getElementById("submitButton");
-		submitB.disabled = false;
+		submitB.disabled = true;
+	}
+	if (document.getElementById("isAdmin").value === "false") {
+		var idVerif = document.getElementById("isVerifiedId");
+		idVerif.disabled = true;
+		submitB.disabled = true;
+
 	}
 </script>
 <%@include file="includes/footer.jsp"%>

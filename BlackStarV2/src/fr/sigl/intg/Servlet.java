@@ -96,10 +96,30 @@ public class Servlet extends HttpServlet {
 				response.sendRedirect("/BlackStarV2/tags");
 				break;
 			case "/BlackStarV2/edit":
-				int tagId = Integer.parseInt(request.getParameter("tagId"));
-				Tag tag = tagController.getTag(tagId);
-				request.setAttribute("tag", tag);
+				int tagIdToEdit = Integer.parseInt(request.getParameter("tagId"));
+				Tag tagToEdit = tagController.getTag(tagIdToEdit);
+				request.setAttribute("tag", tagToEdit);
 				request.getRequestDispatcher("/editTag_BLACKSTAR.jsp").forward(request,response);
+				break;
+			case "/BlackStarV2/save_modifications":
+				int tagId = Integer.parseInt(request.getParameter("tagId"));
+				Tag tagToUpdate = tagController.getTag(tagId);
+				
+				tagToUpdate.setTagName(request.getParameter("tag_name"));
+				tagToUpdate.setTagSupport(request.getParameter("tag_support"));
+				tagToUpdate.setTagSupportspecificity(request.getParameter("tag_support_specificity"));
+				tagToUpdate.setTagPlace(request.getParameter("tag_place"));
+				tagToUpdate.setTagSize(request.getParameter("tag_size"));
+				tagToUpdate.setTagUsedtechnique(request.getParameter("tag_technique"));
+				tagToUpdate.setTagTrashleft(request.getParameter("tag_trash"));
+				tagToUpdate.setTagAuthorfirstname(request.getParameter("tag_author_firstname"));
+				tagToUpdate.setTagAuthorlastname(request.getParameter("tag_author_lastname"));
+				tagToUpdate.setTagIdverified(Boolean.valueOf(request.getParameter("tag_idVerified")));
+				Part filePart2 = request.getPart("image_chooser");
+				
+				tagController.SaveOrUpdateTag(tagToUpdate, filePart2);
+				
+				response.sendRedirect("/BlackStarV2/tags");
 				break;
 			case "/BlackStarV2/gestion":
 				request.getRequestDispatcher("/user_administration_BLACKSTAR.jsp").forward(request, response);

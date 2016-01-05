@@ -28,7 +28,33 @@ import fr.sigl.intg.model.UserloginDAO;
  */
 public class TagController {
 
-	public void SaveOrUpdateTag(Tag tag) {
+	public void SaveOrUpdateTag(Tag tag, Part filePart) {
+		TagDAO tagDAO = new TagDAO();
+
+		tagDAO.merge(tag);
+		
+		if (filePart != null && !filePart.getSubmittedFileName().equals("")) {
+            try {
+				Image image = new Image();
+				image.setTag((Tag) tagDAO.findByExample(tag).get(0));
+				InputStream inputStream = filePart.getInputStream();	
+				DataInputStream dataIs = new DataInputStream(inputStream);
+				byte[] imgBytes = new byte[(int)filePart.getSize()];
+				dataIs.readFully(imgBytes);
+				image.setImgBytes(imgBytes);
+				
+				ImageDAO imageDAO = new ImageDAO();
+				imageDAO.persist(image);
+				Set<Image> images = tag.getImages();
+				images.add((Image) imageDAO.findByExample(image).get(0));
+				tag.setImages(images);
+				tagDAO.merge(tag);
+				
+            } catch (IOException e) {
+				e.printStackTrace();
+			}
+        }
+		
 	}
 
 	public List searchTags(String name, String authorFirstName, String authorLastName, String responsibleUser) {
