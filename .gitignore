@@ -118,5 +118,4 @@ nb-configuration.xml
 ######################## BlackStar.gitignore
 ##################################################################
 
-RemoteSystemsTempFiles/.project
 Servers/
