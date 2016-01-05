@@ -6,8 +6,16 @@
 		<tr>
 			<td>
 				<form action="gestion">
-					<input type="hidden" id="isAdmin" value="${isAdmin}" />
-					<button type="submit" id="adminButton">Gérer les utilisateurs</button>
+					<c:choose>
+						<c:when test="${userType == 'admin'}">
+							<button type="submit" id="adminButton">Gérer les
+								utilisateurs</button>
+						</c:when>
+						<c:otherwise>
+							<button disabled="disabled" type="submit" id="adminButton">Gérer les
+								utilisateurs</button>
+						</c:otherwise>
+					</c:choose>
 				</form>
 			</td>
 		</tr>
@@ -71,10 +79,10 @@
 	</table>
 </center>
 <script>
-if (document.getElementById("isOwner").value === "true") {
-	var adminButton = document.getElementById("adminButton");
-	adminButton.disabled = false;
-	adminButton.style.visibility = "hidden";
-}
+	if (document.getElementById("isOwner").value === "true") {
+		var adminButton = document.getElementById("adminButton");
+		adminButton.disabled = false;
+		adminButton.style.visibility = "hidden";
+	}
 </script>
 <%@include file="includes/footer.jsp"%>
