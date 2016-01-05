@@ -53,6 +53,7 @@ public class Servlet extends HttpServlet {
 					request.getRequestDispatcher("/login_BLACKSTAR.jsp").forward(request, response);
 				break;
 			case "/BlackStarV2/tags":
+				request.setAttribute("tagList", tagController.findAllTags());
 				request.getRequestDispatcher("/mainpage_admin_BLACKSTAR.jsp").forward(request, response);
 			case "/BlackStarV2/add":
 				request.getRequestDispatcher("/addNewTag_BLACKSTAR.jsp").forward(request,response);

@@ -106,6 +106,13 @@ public class TagController {
 		
 	}
 
+	public List findAllTags() {
+		TagDAO tagDAO = new TagDAO();
+		Tag tag = new Tag();
+		
+		return tagDAO.findByExample(tag);
+	}
+
 	/*public List<String[]> findAllTags(Connection db) {
 		List<String[]> tagList = new ArrayList<>();
 		
