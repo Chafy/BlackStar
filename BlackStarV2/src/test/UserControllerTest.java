@@ -1,12 +1,14 @@
 package test;
 
 import org.testng.annotations.Test;
+import fr.sigl.intg.controller.UserController;
 
 public class UserControllerTest {
 
   @Test
   public void UserController() {
-    assert(true);
+	  UserController userController = new UserController();
+	  assert(userController != null);
   }
 
   @Test
