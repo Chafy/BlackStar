@@ -186,7 +186,7 @@ public class Tag implements java.io.Serializable {
 		String result =  System.lineSeparator() +
 				"Le " + getTagRegistrationdate().getDate() + "/" + (getTagRegistrationdate().getMonth() + 1)  + "/" + (getTagRegistrationdate().getYear() + 1900) + ","
 				+ System.lineSeparator() + "a été constaté une dégradation matérielle sous la forme d'un tag sur un lieu appartenant à la SFP." 
-				+ System.lineSeparator() + "La dégration a été constatée à " + getTagPlace() + "."
+				+ System.lineSeparator() + "La dégradation a été constatée à " + getTagPlace() + "."
 				+ System.lineSeparator()
 				+ System.lineSeparator() + "Le tag possède les caractérisques suivantes :"
 				+ System.lineSeparator() + "Support : " + getTagSupport()
