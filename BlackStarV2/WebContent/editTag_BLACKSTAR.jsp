@@ -73,11 +73,11 @@
 			</tr>
 			<tr>
 				<td>Auteur (Nom):</td>
-				<td><input name="tag_author_firstname"
-					value="${tag.tagAuthorfirstname}" /></td>
-				<td>Auteur (Prénom):</td>
 				<td><input name="tag_author_lastname"
 					value="${tag.tagAuthorlastname}" /></td>
+				<td>Auteur (Prénom):</td>
+				<td><input name="tag_author_firstname"
+					value="${tag.tagAuthorfirstname}" /></td>
 			</tr>
 			<tr>
 				<td>Identitée vérifiée?:</td>

@@ -55,9 +55,9 @@
 			</tr>
 			<tr>
 				<td>Auteur (Nom):</td>
-				<td><input type="text" name="tag_author_firstname" value="" /></td>
-				<td>Auteur (Prénom):</td>
 				<td><input type="text" name="tag_author_lastname" value="" /></td>
+				<td>Auteur (Prénom):</td>
+				<td><input type="text" name="tag_author_firstname" value="" /></td>
 			</tr>
 			<tr>
 				<td>Identitée vérifiée?:</td>
